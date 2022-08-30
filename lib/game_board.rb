@@ -8,23 +8,27 @@ class GameBoard
         @e_column = [".", ".", ".", ".", ".", "."]
         @f_column = [".", ".", ".", ".", ".", "."]
         @g_column = [".", ".", ".", ".", ".", "."]
+        #Refactor into individual Cells if necessary (Cell class)
     end
 
     def welcome_screen
-        puts "Welcome to Connect 4!" 
+        puts `clear`
+        puts "xoxoxoxo Welcome to Connect 4! oxoxoxox" 
         puts "Test your intelligence against our super computer!"
-        puts "Type 'GO' to start the game"
+        puts "Type (p) to start the game. Type (q) to quit."
+
         go = gets.chomp
-        if go == 'GO'
-           return print_game_board
-        elsif go == 'go'
-            puts "Check your caps!"
-        elsif go == 'Go'
-            puts "Capitalization counts!"
-        else 
-            puts "Try again!"
+
+        until go.downcase == 'p' || go.downcase == 'q' || go == '(p)' || go == '(q)'
+            puts 'Try again!'
+            go = gets.chomp
+        end 
+
+        if go.downcase == 'p' || go == '(p)'
+            return print_game_board
+        elsif go.downcase == 'q' || go == '(q)'
+            return puts "Goodbye"
         end
-        welcome_screen
     end
 
     def print_game_board 
