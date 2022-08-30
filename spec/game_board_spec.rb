@@ -7,5 +7,5 @@ RSpec.describe do
             game_board = GameBoard.new()
             expect(game_board.a_column.all? { |string| string == "." }).to eq (true)
         end
-    end
+    end 
 end
