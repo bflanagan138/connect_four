@@ -27,6 +27,28 @@ class GameBoard
         welcome_screen
     end
 
+    def valid_column?(column)
+        #makes sure users selection is a valid column
+        column.include?('.')
+    end 
+
+    #figure out who player is
+    #select column
+    #check if column valid
+    #places the piece 
+    #checks for winner
+
+
+    def place_piece
+        column = user.select_column
+        if valid_column?(column)
+            #write code that puts piece at bottom of column
+        else 
+            #write code that says 'try again' and restarts method
+        end
+    end
+
+
     def print_game_board 
         puts "ABCDEFG"
         6.times do |i| 
