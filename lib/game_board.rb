@@ -47,6 +47,9 @@ class GameBoard
         column[column.index(".")] = "x"
     end
 
+    def drop_comp_piece(column)
+        column[column.index(".")] = "o"
+    end
 
     def render
         render = "ABCDEFG\n"
