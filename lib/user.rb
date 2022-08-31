@@ -9,7 +9,7 @@ class User
     end
 
     def select_column
-
+        puts 'What column would you like?'
         choice = gets.chomp
 
         if choice.upcase == 'A'
@@ -42,4 +42,6 @@ end
 
 # game_board = GameBoard.new 
 # user = User.new(game_board)
-# puts user.select_column
+# game_board.drop_piece(user.select_column)
+# game_board.drop_piece(computer.select_column)
+# puts game_board.render 
