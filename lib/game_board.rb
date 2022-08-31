@@ -43,13 +43,8 @@ class GameBoard
     #checks for winner
 
 
-    def place_piece
-        column = user.select_column
-        if valid_column?(column)
-            #write code that puts piece at bottom of column
-        else 
-            #write code that says 'try again' and restarts method
-        end
+    def drop_piece(column)
+        column[column.index(".")] = "x"
     end
 
 
@@ -68,6 +63,3 @@ class GameBoard
         render
     end
 end
-# game_board = GameBoard.new()
-# game_board.welcome_screen
-# game_board.print_game_board

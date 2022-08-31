@@ -18,9 +18,21 @@ RSpec.describe do
         it 'returns true if column has empty space' do
             game_board = GameBoard.new()
             expect(game_board.valid_column?(game_board.a_column)).to eq(true)
-            expect(game_board.render).to eq ("ABCDEFG\n.......\n.......\n.......\n.......\n.......\n.......\n")
         end 
-        xit 'returns false if invalid' do 
+        it 'returns false if invalid' do 
+            game_board = GameBoard.new()
+            5.times do
+                game_board.drop_piece(game_board.a_column)
+            end
+            expect(game_board.valid_column?(game_board.a_column)).to eq (true)
+            game_board.drop_piece(game_board.a_column)
+            expect(game_board.valid_column?(game_board.a_column)).to eq (false)
         end 
     end 
+    describe '#render' do
+        it 'renders game board to terminal' do
+            game_board = GameBoard.new()
+            expect(game_board.render).to eq ("ABCDEFG\n.......\n.......\n.......\n.......\n.......\n.......\n")
+        end
+    end
 end
