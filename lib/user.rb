@@ -9,23 +9,30 @@ class User
     end
 
     def select_column
-        choice = gets.chomp  
-        if @game_board.valid_column? == true
-            if choice.upcase == 'A'
-                return game_board.a_column
-            elsif choice.upcase == 'B'
-                return game_board.b_column
-            elsif choice.upcase == 'C'
-                return game_board.c_column
-            elsif choice.upcase == 'D'
-                return game_board.d_column
-            elsif choice.upcase == 'E'
-                return game_board.e_column
-            elsif choice.upcase == 'F'
-                return game_board.f_column
-            elsif choice.upcase == 'G'
-                return game_board.g_column
-            end
+
+        choice = gets.chomp
+
+        if choice.upcase == 'A'
+            column = game_board.a_column
+        elsif choice.upcase == 'B'
+            column = game_board.b_column
+        elsif choice.upcase == 'C'
+            column = game_board.c_column
+        elsif choice.upcase == 'D'
+            column = game_board.d_column
+        elsif choice.upcase == 'E'
+            column = game_board.e_column
+        elsif choice.upcase == 'F'
+            column = game_board.f_column
+        elsif choice.upcase == 'G'
+            column = game_board.g_column
+        else
+            puts 'Try again'
+            return select_column
+        end
+
+        if @game_board.valid_column?(column) == true
+            return column
         else
             puts 'Try again'
         end 
@@ -33,6 +40,6 @@ class User
     end
 end 
 
-game_board = GameBoard.new 
-user = User.new(game_board)
-puts user.select_column
+# game_board = GameBoard.new 
+# user = User.new(game_board)
+# puts user.select_column
