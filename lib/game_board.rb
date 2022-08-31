@@ -43,30 +43,23 @@ class GameBoard
     #checks for winner
 
 
-    def place_piece
-        column = user.select_column
-        if valid_column?(column)
-            #write code that puts piece at bottom of column
-        else 
-            #write code that says 'try again' and restarts method
-        end
+    def drop_piece(column)
+        column[column.index(".")] = "x"
     end
 
 
-    def print_game_board 
-        puts "ABCDEFG"
+    def render
+        render = "ABCDEFG\n"
         6.times do |i| 
-            print @a_column[5-i]
-            print @b_column[5-i]
-            print @c_column[5-i]
-            print @d_column[5-i]
-            print @e_column[5-i]
-            print @f_column[5-i]
-            print @g_column[5-i]
-            puts ""
+            render.concat ( @a_column[5-i] )
+            render.concat ( @b_column[5-i] )
+            render.concat ( @c_column[5-i] )
+            render.concat ( @d_column[5-i] )
+            render.concat ( @e_column[5-i] )
+            render.concat ( @f_column[5-i] )
+            render.concat ( @g_column[5-i] )
+            render.concat ("\n")
         end
+        render
     end
 end
-# game_board = GameBoard.new()
-# game_board.welcome_screen
-# game_board.print_game_board
