@@ -33,6 +33,8 @@ RSpec.describe do
         it 'renders game board to terminal' do
             game_board = GameBoard.new()
             expect(game_board.render).to eq ("ABCDEFG\n.......\n.......\n.......\n.......\n.......\n.......\n")
+            game_board.drop_piece(game_board.a_column)
+            expect(game_board.render).to eq ("ABCDEFG\n.......\n.......\n.......\n.......\n.......\nx......\n")
         end
     end
 end
