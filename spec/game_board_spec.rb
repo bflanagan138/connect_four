@@ -22,19 +22,19 @@ RSpec.describe do
         it 'returns false if invalid' do 
             game_board = GameBoard.new()
             5.times do
-                game_board.drop_piece(game_board.a_column)
+                game_board.place_game_piece(game_board.a_column)
             end
             expect(game_board.valid_column?(game_board.a_column)).to eq (true)
-            game_board.drop_piece(game_board.a_column)
+            game_board.place_game_piece(game_board.a_column)
             expect(game_board.valid_column?(game_board.a_column)).to eq (false)
         end 
     end 
-    describe '#render' do
+    describe '#render_game_board' do
         it 'renders game board to terminal' do
             game_board = GameBoard.new()
-            expect(game_board.render).to eq ("ABCDEFG\n.......\n.......\n.......\n.......\n.......\n.......\n")
-            game_board.drop_piece(game_board.a_column)
-            expect(game_board.render).to eq ("ABCDEFG\n.......\n.......\n.......\n.......\n.......\nx......\n")
+            expect(game_board.render_game_board).to eq ("ABCDEFG\n.......\n.......\n.......\n.......\n.......\n.......\n")
+            game_board.place_game_piece(game_board.a_column)
+            expect(game_board.render_game_board).to eq ("ABCDEFG\n.......\n.......\n.......\n.......\n.......\nx......\n")
         end
     end
 end
