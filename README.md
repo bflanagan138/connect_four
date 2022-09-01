@@ -1,5 +1,4 @@
-Methods to Update/Cleanup
-- game_board ln20 in 'welcome_screen' change variable name go to something more descriptive
+
 
 
 in user.rb 'select_column'

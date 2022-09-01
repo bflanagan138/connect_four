@@ -65,5 +65,5 @@ class GameBoard
     end
 end
 
-game_board = GameBoard.new
-game_board.welcome_screen
+# game_board = GameBoard.new
+# game_board.welcome_screen

@@ -10,31 +10,33 @@ class User
 
     def select_column
         puts 'What column would you like?'
-        choice = gets.chomp
+        choice = gets.chomp.upcase
 
-        if choice.upcase == 'A'
+        if choice == 'A'
             column = game_board.a_column
-        elsif choice.upcase == 'B'
+        elsif choice == 'B'
             column = game_board.b_column
-        elsif choice.upcase == 'C'
+        elsif choice == 'C'
             column = game_board.c_column
-        elsif choice.upcase == 'D'
+        elsif choice == 'D'
             column = game_board.d_column
-        elsif choice.upcase == 'E'
+        elsif choice == 'E'
             column = game_board.e_column
-        elsif choice.upcase == 'F'
+        elsif choice == 'F'
             column = game_board.f_column
-        elsif choice.upcase == 'G'
+        elsif choice == 'G'
             column = game_board.g_column
         else
-            puts 'Try again'
+            puts 'That is not a valid column choice'
+            puts 'Enter A-G only'
             return select_column
         end
 
         if @game_board.valid_column?(column) == true
             return column
         else
-            puts 'Try again'
+            puts 'There are no spaces left in that column'
+            puts 'Please enter a different column choice'
         end 
         select_column
     end
