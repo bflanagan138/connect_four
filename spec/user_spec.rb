@@ -4,7 +4,7 @@ require './lib/game_board'
 
 RSpec.describe do 
     describe '#initialize' do 
-        it 'is xs or os' do 
+        it 'has a game piece' do 
             game_board = GameBoard.new 
             user = User.new(game_board)
             expect(user.game_piece).to eq('x')
