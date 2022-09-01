@@ -19,15 +19,15 @@ class GameBoard
 
         user_input = gets.chomp.downcase
 
-        until user_input.include?('p' || 'q' || ('p') || ('q')) 
+        until user_input == 'p' || user_input == 'q' || user_input == '(p)' || user_input == '(q)'
             puts 'Try again!'
-            user_input = gets.chomp
+            user_input = gets.chomp.downcase
         end 
 
         if user_input == 'p' || user_input == '(p)'
-            return print_game_board
+            puts render_game_board
         elsif user_input == 'q' || user_input == '(q)'
-            return puts "Goodbye"
+            puts "Goodbye"
         end
     end
 
@@ -64,3 +64,6 @@ class GameBoard
         render
     end
 end
+
+game_board = GameBoard.new
+game_board.welcome_screen
