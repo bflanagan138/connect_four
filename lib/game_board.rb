@@ -43,12 +43,8 @@ class GameBoard
     #checks for winner
 
 
-    def drop_piece(column)
-        column[column.index(".")] = "x"
-    end
-
-    def drop_comp_piece(column)
-        column[column.index(".")] = "o"
+    def place_game_piece(column, player)
+        column[column.index(".")] = player.game_piece
     end
 
     def render
