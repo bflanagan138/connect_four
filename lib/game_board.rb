@@ -17,16 +17,16 @@ class GameBoard
         puts "Test your intelligence against our super computer!"
         puts "Type (p) to start the game. Type (q) to quit."
 
-        go = gets.chomp
+        user_input = gets.chomp.downcase
 
-        until go.downcase == 'p' || go.downcase == 'q' || go == '(p)' || go == '(q)'
+        until user_input.include?('p' || 'q' || ('p') || ('q')) 
             puts 'Try again!'
-            go = gets.chomp
+            user_input = gets.chomp
         end 
 
-        if go.downcase == 'p' || go == '(p)'
+        if user_input == 'p' || user_input == '(p)'
             return print_game_board
-        elsif go.downcase == 'q' || go == '(q)'
+        elsif user_input == 'q' || user_input == '(q)'
             return puts "Goodbye"
         end
     end
@@ -43,11 +43,13 @@ class GameBoard
     #checks for winner
 
 
-    def place_game_piece(column, player)
-        column[column.index(".")] = player.game_piece
+    def place_game_piece(column)
+    # def place_game_piece(column, player)
+    #replace line 46 with 47 when player is defined
+        column[column.index(".")] = ('x')
     end
 
-    def render
+    def render_game_board
         render = "ABCDEFG\n"
         6.times do |i| 
             render.concat ( @a_column[5-i] )

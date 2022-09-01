@@ -1,6 +1,4 @@
 Methods to Update/Cleanup
-- game_board ln46 'place_game_piece'
-- game_board ln50 'render'
 - game_board ln20 in 'welcome_screen' change variable name go to something more descriptive
 
 
