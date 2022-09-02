@@ -56,12 +56,12 @@ class Game
         puts @game_board.render_game_board
         puts ' '
         @game_board.place_game_piece(@player1.select_column, @player1)
-        #check_for_winner
+        #check_for_winner(user)
 
         @game_board.place_game_piece(@player2.select_column, @player2)
 
         # puts @game_board.render_game_board
-        #check_for_winner
+        #check_for_winner(computer)
         puts `clear`
 
         if @game_board.game_board_full?
