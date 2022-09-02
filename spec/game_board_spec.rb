@@ -1,6 +1,7 @@
 require 'rspec'
 require './lib/game_board'
 require './lib/user'
+require './lib/computer'
 
 RSpec.describe do
     describe "#initialize" do
@@ -45,6 +46,14 @@ RSpec.describe do
             game_board.place_game_piece(game_board.a_column, player1)
 
             expect(game_board.render_game_board).to eq ("ABCDEFG\n.......\n.......\n.......\n.......\n.......\nx......\n")
+        end
+        it 'places a computer game piece' do 
+            game_board = GameBoard.new
+            player2 = Computer.new(game_board)
+
+            game_board.place_game_piece(game_board.g_column, player2)
+
+            expect(game_board.render_game_board).to eq ("ABCDEFG\n.......\n.......\n.......\n.......\n.......\n......o\n")
         end
     end
 end
