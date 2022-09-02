@@ -24,7 +24,7 @@ class Game
         puts' '
         puts '==== Welcome! ==== '
         puts 'Test your intelligence against our supercomputer.'
-        puts 'Enter <p> to play, <q> to quit'
+        puts 'Enter (p) to play, (q) to quit'
 
         user_input = gets.chomp.downcase
 
