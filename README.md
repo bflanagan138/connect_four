@@ -26,6 +26,7 @@ end
 diagonals
 - only test rows above 4
 - .each_with_index
+.each_with_index do |column, i|
 
 d_column.to_s.include?('xxxx')
 

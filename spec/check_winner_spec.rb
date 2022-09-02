@@ -64,6 +64,30 @@ RSpec.describe CheckWinner do
     end
 
     describe '#check_column' do 
+        it 'returns true if there are 4 consecutive user gamepieces in first column' do 
+            game_board = GameBoard.new
+            user = User.new(game_board)
+            check_winner = CheckWinner.new(user, game_board)
+
+            game_board.place_game_piece(game_board.a_column, user)
+            game_board.place_game_piece(game_board.a_column, user)
+            game_board.place_game_piece(game_board.a_column, user)
+            game_board.place_game_piece(game_board.a_column, user)
+
+            expect(check_winner.check_column).to eq true 
+        end
+        it 'still returns true if 4 consecutive computer gamepieces in a different column' do 
+            game_board = GameBoard.new
+            computer = Computer.new(game_board)
+            check_winner = CheckWinner.new(computer, game_board)
+
+            game_board.place_game_piece(game_board.a_column, computer)
+            game_board.place_game_piece(game_board.a_column, computer)
+            game_board.place_game_piece(game_board.a_column, computer)
+            game_board.place_game_piece(game_board.a_column, computer)
+
+            expect(check_winner.check_column).to eq true 
+        end
     end
 
     describe '#check_diagonal' do 
