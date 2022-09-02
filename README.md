@@ -11,6 +11,7 @@ array.each_cons(2).all? { |a,b| b == a + 1 }
 diagonal_string 'xxxx..'
 
 row = a1(.) b1(.) c1(.) d1(x) e1(.) f1(.) g1(.)
+
 row.to_string
 row_string = '...x...'
 row_string.include?('xxxx')
@@ -24,6 +25,7 @@ end
 
 diagonals
 - only test rows above 4
+- .each_with_index
 
 d_column.to_s.include?('xxxx')
 
