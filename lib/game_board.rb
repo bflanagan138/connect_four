@@ -32,24 +32,11 @@ class GameBoard
     end
 
     def valid_column?(column)
-        #makes sure users selection is a valid column
         column.include?('.')
     end 
 
-    #figure out who player is
-    #select column
-    #check if column valid
-    #places the piece 
-    #checks for winner
-
-
-    # def place_game_piece(column)
     def place_game_piece(column, player)
-        # if player == player1 
             column[column.index(".")] = player.game_piece
-        # else
-        #     column[column.index(".")] = ('o')
-        # end 
     end
 
     def render_game_board
@@ -67,6 +54,3 @@ class GameBoard
         render
     end
 end
-
-# game_board = GameBoard.new
-# game_board.welcome_screen
