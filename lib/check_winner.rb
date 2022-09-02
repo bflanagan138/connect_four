@@ -13,7 +13,7 @@ class CheckWinner
             row = ''
             
             @game_board.columns.each do |column|
-                    row1.concat(column[i])
+                    row.concat(column[i])
             end
 
             if row.include?('xxxx') || row.include?('oooo') 
