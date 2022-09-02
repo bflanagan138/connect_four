@@ -43,10 +43,13 @@ class GameBoard
     #checks for winner
 
 
-    def place_game_piece(column)
-    # def place_game_piece(column, player)
-    #replace line 46 with 47 when player is defined
-        column[column.index(".")] = ('x')
+    # def place_game_piece(column)
+    def place_game_piece(column, player)
+        # if player == player1 
+            column[column.index(".")] = player.game_piece
+        # else
+        #     column[column.index(".")] = ('o')
+        # end 
     end
 
     def render_game_board
