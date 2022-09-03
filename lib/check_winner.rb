@@ -18,6 +18,7 @@ class CheckWinner
                 return true
             end
         end 
+        false
     end
 
     def check_column
@@ -26,6 +27,7 @@ class CheckWinner
                 return true 
             end 
         end
+        false
     end
 
     def check_diagonal
@@ -35,20 +37,18 @@ class CheckWinner
         columns_to_test.each do |column|
             if @game_board.columns[0..3].include?(column)
                 column[3..5].each_with_index do |row, index|
-                    
                     diagonal = []
                     diagonal << row
                     3.times do |i|
                        
                         column_index = @game_board.columns.index(column) + i + 1
                         row_index = 3 + index - (i + 1)
-                       
                         diagonal << (@game_board.columns[column_index][row_index]) 
                     end
                     return true if diagonal.join.include?("xxxx") || diagonal.join.include?("oooo")
                 end
             end
-            
+
             if @game_board.columns[3..6].include?(column)
                 column[3..5].each_with_index do |row, index|
                     diagonal = []
@@ -58,13 +58,18 @@ class CheckWinner
                         column_index = @game_board.columns.index(column) - i - 1
                         row_index = 3 + index - (i + 1)
                         diagonal << (@game_board.columns[column_index][row_index]) 
-                       
                     end
                     return true if diagonal.join.include?("xxxx") || diagonal.join.include?("oooo")
                 end
             end
         end
         false
+    end
+
+    def check_for_winner?
+        if check_diagonal || check_row || check_column
+            return true
+        end
     end
 end
 

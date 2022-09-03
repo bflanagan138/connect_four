@@ -9,7 +9,7 @@ class User
     end
 
     def select_column
-        puts 'What column would you like?'
+        puts 'Select your column'
         choice = gets.chomp.upcase
 
         if choice == 'A'
