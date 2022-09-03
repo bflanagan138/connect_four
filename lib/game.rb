@@ -1,6 +1,7 @@
 require './lib/game_board'
 require './lib/user'
 require './lib/computer'
+require './lib/check_winner'
 
 class Game 
     attr_reader :game_board, :player1, :player2
@@ -24,7 +25,7 @@ class Game
         puts' '
         puts '==== Welcome! ==== '
         puts 'Test your intelligence against our supercomputer.'
-        puts 'Enter <p> to play, <q> to quit'
+        puts 'Enter (p) to play, (q) to quit'
 
         user_input = gets.chomp.downcase
 
@@ -41,41 +42,64 @@ class Game
         end
     end
 
-    #player1 goes first
-    #select column
-    #check if column valid
-    #places the piece 
-    #checks for winner
-    #player2 goes second
-    #select column
-    #check if column valid
-    #places the piece 
-    #checks for winner
-
     def turn
         puts @game_board.render_game_board
         puts ' '
         @game_board.place_game_piece(@player1.select_column, @player1)
-        #check_for_winner
+        if CheckWinner.new(@player1, @game_board).check_for_winner?
+            puts `clear`
+            puts @game_board.render_game_board
+            puts "Player 1 wins! Hit RETURN key to continue"
+            gets.chomp
+            return game_over
+        end
 
         @game_board.place_game_piece(@player2.select_column, @player2)
-
-        # puts @game_board.render_game_board
-        #check_for_winner
+        if CheckWinner.new(@player2, @game_board).check_for_winner?
+            puts `clear`
+            puts @game_board.render_game_board
+            puts "Player 2 wins! Hit RETURN key to continue"
+            gets.chomp
+            return game_over
+        end
         puts `clear`
+        
 
         if @game_board.game_board_full?
-            puts 'There are no more moves. Game Over.'
-            #figure out what happens after game over
-        elsif
+            puts 'There are no more moves. Hit RETURN key to continue'
+            gets.chomp
+            return game_over
+        else 
             turn
         end 
     end
+
+    def game_over
+        puts `clear`
+        puts " __       _      _    _    __  " 
+        puts "|  |     / \\    | \\  / |  |  | "
+        puts "|  __   /___\\   |  \\/  |  |__  "
+        puts "|  |   /     \\  |      |  |    "   
+        puts "|__|  /       \\ |      |  |__| "
+        puts "    __           ___   ___    "
+        puts "   /  \\ \\     / |   | |   |   "
+        puts "  |    | \\   /  |__   |__/    "
+        puts "  |    |  \\ /   |     |  \\    "
+        puts "   \\__/    v    |___| |   \\   "
+        puts ""
+        puts "================================"
+        puts ""
+        puts "Hit RETURN key to return to MAIN MENU"
+        gets.chomp
+        game_board = GameBoard.new 
+        player1 = User.new(game_board)
+        player2 = Computer.new(game_board)
+        game = Game.new(game_board, player1, player2)
+        game.start
+    end
 end
-
-game_board = GameBoard.new 
-player1 = User.new(game_board)
-player2 = Computer.new(game_board)
-game = Game.new(game_board, player1, player2)
-
-game.start
+    game_board = GameBoard.new 
+    player1 = User.new(game_board)
+    player2 = Computer.new(game_board)
+    game = Game.new(game_board, player1, player2)
+    game.start
