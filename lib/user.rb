@@ -41,9 +41,3 @@ class User
         select_column
     end
 end 
-
-# game_board = GameBoard.new 
-# user = User.new(game_board)
-# game_board.drop_piece(user.select_column)
-# game_board.drop_piece(computer.select_column)
-# puts game_board.render 
