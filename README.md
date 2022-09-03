@@ -31,18 +31,18 @@ diagonals
 d_column.to_s.include?('xxxx')
 
 rows 4,5,6.find_all ( player.gamepiece )
-    if x is in column d 
+    <!-- if x is in column d 
         test diagonal down right 
-        test diagonal down left 
+        test diagonal down left  -->
 
-    elsif x is in columns a-c
+    elsif x is in columns a-d
         test diagonal down right
         start 
-        4 times do 
+        3 times do 
             is (column+1)(row-1) also player.gamepiece?
         end 
 
-    elsif x is in columns e-g
+    elsif x is in columns d-g
         test diagonal down left
         start 
         4 times do 
