@@ -3,12 +3,13 @@ require './lib/game_board'
 require 'csv'
 
 class User 
-    attr_reader :game_piece, :game_board, :name
+    attr_reader :game_piece, :game_board
+    attr_accessor :name 
 
-    def initialize(game_board, name = 'User')
+    def initialize(game_board)
         @game_piece = 'x'
         @game_board = game_board 
-        @name = name 
+        @name = 'User'
     end
 
     def select_column

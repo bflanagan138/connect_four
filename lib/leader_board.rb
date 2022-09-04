@@ -8,7 +8,7 @@ class LeaderBoard
     def display_leaderboard
         rows = @file.sort_by { |row| 100 - (row[:wins].to_i.to_f/(row[:wins].to_i + row[:losses].to_i) * 100) }
 
-
+        puts `clear`
         puts "                   ------======= Leaderboard =======------"
         puts '================================================================================'
         puts ' '
@@ -20,11 +20,9 @@ class LeaderBoard
             print '|  ' + row[1] + '  |  ' + row[2] + '  |  '
             print "#{(row[1].to_i.to_f/(row[1].to_i + row[2].to_i) * 100).round(1)}" unless row[2] == '0'
             print '100.0' if row[2] == '0'
-            puts ''
+            puts ' '
         end
+        puts "\n\n\n\n\n"
     end
 
 end
-
-leaderboard = LeaderBoard.new
-leaderboard.display_leaderboard

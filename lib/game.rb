@@ -2,6 +2,7 @@ require './lib/game_board'
 require './lib/user'
 require './lib/computer'
 require './lib/check_winner'
+require './lib/leader_board'
 
 class Game 
     attr_reader :game_board, :player1, :player2
@@ -25,11 +26,11 @@ class Game
         puts' '
         puts '==== Welcome! ==== '
         puts 'Test your intelligence against our supercomputer.'
-        puts 'Enter (p) to play, (q) to quit'
+        puts 'Enter (p) to play, (q) to quit, (l) to see leaderboard'
 
         user_input = gets.chomp.downcase
 
-        until user_input == 'p' || user_input == 'q' || user_input == '(p)' || user_input == '(q)'
+        until user_input == 'p' || user_input == 'q' || user_input == '(p)' || user_input == '(q)' || user_input == '(l)' || user_input == 'l' 
             puts 'Try again!'
             user_input = gets.chomp.downcase
         end 
@@ -39,6 +40,12 @@ class Game
             turn
         elsif user_input == 'q' || user_input == '(q)'
             puts "Goodbye"
+        elsif user_input == 'l' || user_input == '(l)'
+            leader_board = LeaderBoard.new 
+            leader_board.display_leaderboard
+            puts "Hit RETURN key to return to Main Menu"
+            gets.chomp
+            start 
         end
     end
 
@@ -98,8 +105,8 @@ class Game
         game.start
     end
 end
-    game_board = GameBoard.new 
-    player1 = User.new(game_board)
-    player2 = Computer.new(game_board)
-    game = Game.new(game_board, player1, player2)
-    game.start
+    # game_board = GameBoard.new 
+    # player1 = User.new(game_board)
+    # player2 = Computer.new(game_board)
+    # game = Game.new(game_board, player1, player2)
+    # game.start
