@@ -1,11 +1,14 @@
+require 'pry'
 require './lib/game_board'
+require 'csv'
 
 class User 
-    attr_reader :game_piece, :game_board
+    attr_reader :game_piece, :game_board, :name
 
-    def initialize(game_board)
+    def initialize(game_board, name = 'User')
         @game_piece = 'x'
         @game_board = game_board 
+        @name = name 
     end
 
     def select_column
@@ -40,10 +43,24 @@ class User
         end 
         select_column
     end
-end 
 
-# game_board = GameBoard.new 
-# user = User.new(game_board)
-# game_board.drop_piece(user.select_column)
-# game_board.drop_piece(computer.select_column)
-# puts game_board.render 
+    def write_stats(winner)
+        read_file = CSV.open('./player_stats.csv', headers: true, header_converters: :symbol)
+
+        rows = []
+        read_file.each do |row|
+            rows << row
+        end
+
+        rows << [@name.downcase, '0', '0'] if rows.none? { |row| row[0] == @name.downcase}
+        rows.each do |row|        
+            if row[0] == @name.downcase
+                row[1] = row[1].next if winner == true 
+                row[2] = row[2].next if winner == false
+            end
+        end
+
+        write_file = CSV.open('./player_stats.csv', 'w', write_headers: true, headers: ['name','wins','losses'])
+        rows.each { |row| write_file << row }
+    end
+end 
