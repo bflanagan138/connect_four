@@ -46,22 +46,29 @@ class User
     end
 
     def write_stats(winner)
-        read_file = CSV.open('./player_stats.csv', headers: true, header_converters: :symbol)
+        read_file = CSV.read('./player_stats.csv', headers: true, header_converters: :symbol)
 
         rows = []
         read_file.each do |row|
             rows << row
         end
 
-        rows << [@name.downcase, '0', '0'] if rows.none? { |row| row[0] == @name.downcase}
-        rows.each do |row|        
-            if row[0] == @name.downcase
-                row[1] = row[1].next if winner == true 
-                row[2] = row[2].next if winner == false
+        if rows.none? { |row| row[:name] == @name.downcase }
+            rows << [@name.downcase, '1', '0'] if winner == true
+            rows << [@name.downcase, '1', '0'] if winner == false
+        else 
+            rows.each do |row|        
+                row.to_a
+                if row[:name] == @name.downcase
+                    row[:wins] = row[:wins].next if winner == true 
+                    row[:losses] = row[:losses].next if winner == false
+                end
             end
         end
+        
 
-        write_file = CSV.open('./player_stats.csv', 'w', write_headers: true, headers: ['name','wins','losses'])
+        write_file = CSV.open('./player_stats.csv', 'w+', write_headers: true, headers: ['name','wins','losses'])
+        
         rows.each { |row| write_file << row }
     end
 end 

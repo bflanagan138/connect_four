@@ -37,6 +37,11 @@ class Game
 
         if user_input == 'p' || user_input == '(p)'
             puts `clear`
+            if @player1.class == User
+                puts 'Enter player 1 name:'
+                @player1.name = gets.chomp
+                puts `clear`
+            end
             turn
         elsif user_input == 'q' || user_input == '(q)'
             puts "Goodbye"
@@ -56,7 +61,8 @@ class Game
         if CheckWinner.new(@player1, @game_board).check_for_winner?
             puts `clear`
             puts @game_board.render_game_board
-            puts "Player 1 wins! Hit RETURN key to continue"
+            puts "#{player1.name} wins! Hit RETURN key to continue"
+            @player1.write_stats(true)
             gets.chomp
             return game_over
         end
@@ -66,6 +72,7 @@ class Game
             puts `clear`
             puts @game_board.render_game_board
             puts "Player 2 wins! Hit RETURN key to continue"
+            @player1.write_stats(false)
             gets.chomp
             return game_over
         end
@@ -105,8 +112,3 @@ class Game
         game.start
     end
 end
-    # game_board = GameBoard.new 
-    # player1 = User.new(game_board)
-    # player2 = Computer.new(game_board)
-    # game = Game.new(game_board, player1, player2)
-    # game.start
