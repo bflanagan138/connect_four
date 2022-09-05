@@ -1,4 +1,3 @@
 TO FINISH RECORD KEEPING
 
-- write script to receive user's name 
-- update stats after each game
+- still has bug where it won't write if you play two games in a row
