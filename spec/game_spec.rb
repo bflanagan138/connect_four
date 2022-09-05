@@ -1,7 +1,7 @@
 require 'rspec'
 require './lib/game_board'
 require './lib/user'
-require './lib/computer'
+
 require './lib/game'
 
 RSpec.describe Game do

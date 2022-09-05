@@ -1,7 +1,7 @@
 require 'rspec'
 require './lib/game_board'
 require './lib/user'
-require './lib/computer'
+# require './lib/computer'
 
 RSpec.describe do
     describe "#initialize" do

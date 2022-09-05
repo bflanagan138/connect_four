@@ -2,7 +2,7 @@ require 'rspec'
 require './lib/check_winner'
 require './lib/game_board'
 require './lib/user'
-require './lib/computer'
+# require './lib/computer'
 
 RSpec.describe CheckWinner do  
     describe '#initialize' do 
