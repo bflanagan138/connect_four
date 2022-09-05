@@ -14,6 +14,16 @@ RSpec.describe do
             user = User.new(game_board)
             expect(user.game_board).to be_an_instance_of GameBoard
         end 
+        it 'has a default name' do 
+            game_board = GameBoard.new 
+            user = User.new(game_board)
+            expect(user.name).to eq('User')
+        end
+        it 'can have a different name' do 
+            game_board = GameBoard.new 
+            user = User.new(game_board, 'Jason Vorhees')
+            expect(user.name).to eq('Jason Vorhees')
+        end
     end
     #unable to test due to CLI?
     # describe '#method' do

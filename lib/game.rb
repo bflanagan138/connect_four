@@ -2,6 +2,7 @@ require './lib/game_board'
 require './lib/user'
 require './lib/computer'
 require './lib/check_winner'
+require './lib/leader_board'
 
 class Game 
     attr_reader :game_board, :player1, :player2
@@ -25,20 +26,31 @@ class Game
         puts' '
         puts '==== Welcome! ==== '
         puts 'Test your intelligence against our supercomputer.'
-        puts 'Enter (p) to play, (q) to quit'
+        puts 'Enter (p) to play, (q) to quit, (l) to see leaderboard'
 
         user_input = gets.chomp.downcase
 
-        until user_input == 'p' || user_input == 'q' || user_input == '(p)' || user_input == '(q)'
+        until user_input == 'p' || user_input == 'q' || user_input == '(p)' || user_input == '(q)' || user_input == '(l)' || user_input == 'l' 
             puts 'Try again!'
             user_input = gets.chomp.downcase
         end 
 
         if user_input == 'p' || user_input == '(p)'
             puts `clear`
+            if @player1.class == User
+                puts 'Enter player 1 name:'
+                @player1.name = gets.chomp
+                puts `clear`
+            end
             turn
         elsif user_input == 'q' || user_input == '(q)'
             puts "Goodbye"
+        elsif user_input == 'l' || user_input == '(l)'
+            leader_board = LeaderBoard.new 
+            leader_board.display_leaderboard
+            puts "Hit RETURN key to return to Main Menu"
+            gets.chomp
+            start 
         end
     end
 
@@ -49,7 +61,8 @@ class Game
         if CheckWinner.new(@player1, @game_board).check_for_winner?
             puts `clear`
             puts @game_board.render_game_board
-            puts "Player 1 wins! Hit RETURN key to continue"
+            puts "#{player1.name} wins! Hit RETURN key to continue"
+            @player1.write_stats(true)
             gets.chomp
             return game_over
         end
@@ -59,6 +72,7 @@ class Game
             puts `clear`
             puts @game_board.render_game_board
             puts "Player 2 wins! Hit RETURN key to continue"
+            @player1.write_stats(false)
             gets.chomp
             return game_over
         end
