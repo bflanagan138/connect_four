@@ -2,48 +2,40 @@ require 'pry'
 require './lib/game_board'
 require 'csv'
 
-class User 
+class User
     attr_reader :game_piece, :game_board
     attr_accessor :name 
 
-    def initialize(game_board)
-        @game_piece = 'x'
+    def initialize(game_board, game_piece, human = true)
+        @game_piece = game_piece
         @game_board = game_board 
-        @name = 'User'
+        @name = 'Player'
+        @human = human
     end
 
     def select_column
         puts 'Select your column'
         choice = gets.chomp.upcase
 
-        if choice == 'A'
-            column = game_board.a_column
-        elsif choice == 'B'
-            column = game_board.b_column
-        elsif choice == 'C'
-            column = game_board.c_column
-        elsif choice == 'D'
-            column = game_board.d_column
-        elsif choice == 'E'
-            column = game_board.e_column
-        elsif choice == 'F'
-            column = game_board.f_column
-        elsif choice == 'G'
-            column = game_board.g_column
-        else
-            puts 'That is not a valid column choice'
-            puts 'Enter A-G only'
-            return select_column
-        end
+        column_options = {
+            'A' => game_board.a_column,
+            'B' => game_board.b_column,
+            'C' => game_board.c_column,
+            'D' => game_board.d_column,
+            'E' => game_board.e_column,
+            'F' => game_board.f_column,
+            'G' => game_board.g_column,
+        }
 
-        if @game_board.valid_column?(column) == true
+        column = column_options[choice]
+        if @game_board.valid_column?(column)
             return column
-        else
-            puts 'There are no spaces left in that column'
-            puts 'Please enter a different column choice'
-        end 
-        select_column
+        else 
+            puts 'That is not a valid column choice'
+            select_column
+        end
     end
+     
 
     def write_stats(winner)
         read_file = CSV.read('./player_stats.csv', headers: true, header_converters: :symbol)

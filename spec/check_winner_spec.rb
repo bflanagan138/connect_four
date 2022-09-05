@@ -8,14 +8,14 @@ RSpec.describe CheckWinner do
     describe '#initialize' do 
         it 'has a gameboard' do 
             game_board = GameBoard.new
-            user = User.new(game_board)
+            user = User.new(game_board, 'x')
             check_winner = CheckWinner.new(user, game_board)
 
             expect(check_winner.game_board).to be_a GameBoard
         end 
         it 'has a player' do 
             game_board = GameBoard.new
-            user = User.new(game_board)
+            user = User.new(game_board, 'x')
             check_winner = CheckWinner.new(user, game_board)
 
             expect(check_winner.player).to be_a User 
@@ -32,7 +32,7 @@ RSpec.describe CheckWinner do
     describe '#check_row' do 
         it 'returns true if there are 4 consecutive user gamepieces in first row' do 
             game_board = GameBoard.new
-            user = User.new(game_board)
+            user = User.new(game_board, 'x')
             check_winner = CheckWinner.new(user, game_board)
 
             game_board.place_game_piece(game_board.a_column, user)
@@ -44,7 +44,7 @@ RSpec.describe CheckWinner do
         end
         it 'still returns true if 4 consecutive computer gamepieces in second row' do 
             game_board = GameBoard.new
-            user = User.new(game_board)
+            user = User.new(game_board, 'x')
             computer = Computer.new(game_board)
             check_winner = CheckWinner.new(user, game_board)
 
@@ -66,7 +66,7 @@ RSpec.describe CheckWinner do
     describe '#check_column' do 
         it 'returns true if there are 4 consecutive user gamepieces in first column' do 
             game_board = GameBoard.new
-            user = User.new(game_board)
+            user = User.new(game_board, 'x')
             check_winner = CheckWinner.new(user, game_board)
 
             game_board.place_game_piece(game_board.a_column, user)
@@ -93,7 +93,7 @@ RSpec.describe CheckWinner do
     describe '#check_diagonal' do 
         it 'returns true if there are 4 consecutive user gamepieces diagonal formation' do 
             game_board = GameBoard.new
-            user = User.new(game_board)
+            user = User.new(game_board, 'x')
             check_winner = CheckWinner.new(user, game_board)
 
             game_board.place_game_piece(game_board.a_column, user)

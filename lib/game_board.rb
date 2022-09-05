@@ -9,11 +9,11 @@ class GameBoard
         @f_column = [".", ".", ".", ".", ".", "."]
         @g_column = [".", ".", ".", ".", ".", "."]
         @columns = [@a_column, @b_column, @c_column, @d_column, @e_column, @f_column, @g_column]
-        #Refactor into individual Cells if necessary (Cell class)
+       
     end
 
     def valid_column?(column)
-        column.include?('.')
+        column != nil && column.include?('.') 
     end 
 
     def place_game_piece(column, player)
