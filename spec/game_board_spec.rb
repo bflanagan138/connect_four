@@ -35,7 +35,7 @@ RSpec.describe do
     describe '#render_game_board' do
         it 'renders game board to terminal' do
             game_board = GameBoard.new()
-            expect(game_board.render_game_board).to eq ("ABCDEFG\n.......\n.......\n.......\n.......\n.......\n.......\n")
+            expect(game_board.render_game_board).to eq ("A B C D E F G\n. . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \n")
         end
     end
     describe '#place_game_piece' do 
@@ -45,7 +45,7 @@ RSpec.describe do
 
             game_board.place_game_piece(game_board.a_column, player1)
 
-            expect(game_board.render_game_board).to eq ("ABCDEFG\n.......\n.......\n.......\n.......\n.......\nx......\n")
+            expect(game_board.render_game_board).to eq ("A B C D E F G\n. . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \nx . . . . . . \n")
         end
         it 'places a computer game piece' do 
             game_board = GameBoard.new
@@ -53,7 +53,7 @@ RSpec.describe do
 
             game_board.place_game_piece(game_board.g_column, player2)
 
-            expect(game_board.render_game_board).to eq ("ABCDEFG\n.......\n.......\n.......\n.......\n.......\n......o\n")
+            expect(game_board.render_game_board).to eq ("A B C D E F G\n. . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . o \n")
         end
     end
 end
