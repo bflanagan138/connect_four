@@ -14,8 +14,12 @@ class User
     end
 
     def select_column
-        puts 'Select your column'
-        choice = gets.chomp.upcase
+        if @human == true
+            puts 'Select your column'
+            choice = gets.chomp.upcase
+        else
+            choice = ( ('A'..'G').to_a.sample )
+        end
 
         column_options = {
             'A' => game_board.a_column,
