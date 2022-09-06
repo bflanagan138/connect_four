@@ -1,7 +1,6 @@
 require 'rspec'
 require './lib/game_board'
 require './lib/user'
-# require './lib/computer'
 
 RSpec.describe do
     describe "#initialize" do
@@ -50,7 +49,7 @@ RSpec.describe do
         end
         it 'places a computer game piece' do 
             game_board = GameBoard.new
-            player2 = Computer.new(game_board)
+            player2 = User.new(game_board, 'o')
 
             game_board.place_game_piece(game_board.g_column, player2)
 
