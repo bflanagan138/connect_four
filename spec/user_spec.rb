@@ -25,16 +25,5 @@ RSpec.describe do
             user.name = 'Jason Vorhees'
             expect(user.name).to eq('Jason Vorhees')
         end
-    end
-    #unable to test due to CLI?
-    # describe '#method' do
-    #     it 'selects a column' do 
-    #         game_board = GameBoard.new 
-    #         user = User.new(game_board)
-    #         expect(user.select_column).to eq(game_board.a_column)
-    #     end 
-    #     xit 'returns column selection' do 
-    #         user = User.new
-    #     end 
-    # end 
+    end 
 end 
