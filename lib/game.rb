@@ -1,6 +1,5 @@
 require './lib/game_board'
 require './lib/user'
-
 require './lib/check_winner'
 require './lib/leader_board'
 
@@ -37,11 +36,7 @@ class Game
 
         if user_input == 'p' || user_input == '(p)'
             puts `clear`
-            if @player1.class == User
-                puts 'Enter player 1 name:'
-                @player1.name = gets.chomp
-                puts `clear`
-            end
+            one_or_two_player_game
             turn
         elsif user_input == 'q' || user_input == '(q)'
             puts "Goodbye"
@@ -51,6 +46,23 @@ class Game
             puts "Hit RETURN key to return to Main Menu"
             gets.chomp
             start 
+        end
+    end
+
+    def one_or_two_player_game
+        puts 'Enter 1 for one player, enter 2 for two players'
+        user_input = gets.chomp.to_i
+        if user_input == 1 
+            puts 'Enter player 1 name:'
+            @player1.name = gets.chomp
+            puts `clear`
+        elsif user_input == 2
+            puts 'Enter player 1 name:'
+            @player1.name = gets.chomp
+            puts 'Enter player 2 name:'
+            @player2.name = gets.chomp
+            puts `clear`
+            @player2.human = true 
         end
     end
 
@@ -67,6 +79,9 @@ class Game
             return game_over
         end
 
+        puts `clear`
+        puts @game_board.render_game_board
+        puts ' '
         @game_board.place_game_piece(@player2.select_column, @player2)
         if CheckWinner.new(@player2, @game_board).check_for_winner?
             puts `clear`
@@ -106,8 +121,8 @@ class Game
         puts "Hit RETURN key to return to MAIN MENU"
         gets.chomp
         game_board = GameBoard.new 
-        player1 = User.new(game_board)
-        player2 = Computer.new(game_board)
+        player1 = User.new(game_board, 'x')
+        player2 = User.new(game_board, 'o', false)
         game = Game.new(game_board, player1, player2)
         game.start
     end
