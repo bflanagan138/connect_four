@@ -2,6 +2,7 @@ require './lib/game_board'
 require './lib/user'
 require './lib/check_winner'
 require './lib/leader_board'
+require './lib/timer'
 
 class Game 
     attr_reader :game_board, :player1, :player2
@@ -10,6 +11,7 @@ class Game
         @game_board = game_board
         @player1 = player1 
         @player2 = player2 
+        @timer = Timer.new
     end
 
     def start 
@@ -37,6 +39,7 @@ class Game
         if user_input == 'p' || user_input == '(p)'
             puts `clear`
             one_or_two_player_game
+            @timer.start_timer
             turn
         elsif user_input == 'q' || user_input == '(q)'
             puts "Goodbye"
@@ -73,6 +76,7 @@ class Game
         if CheckWinner.new(@player1, @game_board).check_for_winner?
             puts `clear`
             puts @game_board.render_game_board
+            @timer.stop_timer 
             puts "#{player1.name} wins! Hit RETURN key to continue"
             @player1.write_stats(true)
             gets.chomp
@@ -86,6 +90,7 @@ class Game
         if CheckWinner.new(@player2, @game_board).check_for_winner?
             puts `clear`
             puts @game_board.render_game_board
+            @timer.stop_timer
             puts "Player 2 wins! Hit RETURN key to continue"
             @player1.write_stats(false)
             gets.chomp
@@ -96,6 +101,7 @@ class Game
 
         if @game_board.game_board_full?
             puts 'There are no more moves. Hit RETURN key to continue'
+            @timer.stop_timer
             gets.chomp
             return game_over
         else 
@@ -118,6 +124,7 @@ class Game
         puts ""
         puts "================================"
         puts ""
+        puts "It took #{@timer.elapsed_time} seconds to play game"
         puts "Hit RETURN key to return to MAIN MENU"
         gets.chomp
         game_board = GameBoard.new 
