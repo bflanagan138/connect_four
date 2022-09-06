@@ -1,6 +1,6 @@
 require './lib/game_board'
 require './lib/user'
-require './lib/computer'
+
 require './lib/check_winner'
 require './lib/leader_board'
 

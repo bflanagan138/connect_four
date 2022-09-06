@@ -1,7 +1,7 @@
 require 'rspec'
 require './lib/game_board'
 require './lib/user'
-require './lib/computer'
+# require './lib/computer'
 
 RSpec.describe do
     describe "#initialize" do
@@ -20,10 +20,11 @@ RSpec.describe do
         it 'returns true if column has empty space' do
             game_board = GameBoard.new()
             expect(game_board.valid_column?(game_board.a_column)).to eq(true)
+            expect(game_board.valid_column?(nil)).to eq(false)
         end 
         it 'returns false if invalid' do 
             game_board = GameBoard.new()
-            player1 = User.new(game_board)
+            player1 = User.new(game_board, 'x')
             5.times do
                 game_board.place_game_piece(game_board.a_column, player1)
             end
@@ -41,7 +42,7 @@ RSpec.describe do
     describe '#place_game_piece' do 
         it 'places game piece' do 
             game_board = GameBoard.new
-            player1 = User.new(game_board)
+            player1 = User.new(game_board, 'x')
 
             game_board.place_game_piece(game_board.a_column, player1)
 
