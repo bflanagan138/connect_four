@@ -4,7 +4,7 @@ require 'csv'
 
 class User
     attr_reader :game_piece, :game_board
-    attr_accessor :name 
+    attr_accessor :name, :human
 
     def initialize(game_board, game_piece, human = true)
         @game_piece = game_piece
@@ -15,7 +15,7 @@ class User
 
     def select_column
         if @human == true
-            puts 'Select your column'
+            puts "#{@name} select your column"
             choice = gets.chomp.upcase
         else
             choice = ( ('A'..'G').to_a.sample )
