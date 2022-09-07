@@ -79,6 +79,7 @@ class Game
             @timer.stop_timer 
             puts "#{player1.name} wins! Hit RETURN key to continue"
             @player1.write_stats(true)
+            @player2.write_stats(false)
             gets.chomp
             return game_over
         end
@@ -93,6 +94,7 @@ class Game
             @timer.stop_timer
             puts "#{@player2.name} wins! Hit RETURN key to continue"
             @player1.write_stats(false)
+            @player2.write_stats(true)
             gets.chomp
             return game_over
         end

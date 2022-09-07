@@ -48,10 +48,11 @@ class User
         read_file.each do |row|
             rows << row
         end
+        
 
         if rows.none? { |row| row[:name] == @name.downcase }
             rows << [@name.downcase, '1', '0'] if winner == true
-            rows << [@name.downcase, '1', '0'] if winner == false
+            rows << [@name.downcase, '0', '1'] if winner == false
         else 
             rows.each do |row|        
                 row.to_a
@@ -63,8 +64,10 @@ class User
         end
         
 
-        write_file = CSV.open('./player_stats.csv', 'w+', write_headers: true, headers: ['name','wins','losses'])
+        write_file = CSV.open('./player_stats.csv', 'w', write_headers: true, headers: ['name','wins','losses'])
         
         rows.each { |row| write_file << row }
+        # require 'pry'; binding.pry
+        write_file.close
     end
 end 
