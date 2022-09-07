@@ -9,7 +9,7 @@ class User
     def initialize(game_board, game_piece, human = true)
         @game_piece = game_piece
         @game_board = game_board 
-        @name = 'Player'
+        @name = 'Computer'
         @human = human
     end
 

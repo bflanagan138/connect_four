@@ -91,7 +91,7 @@ class Game
             puts `clear`
             puts @game_board.render_game_board
             @timer.stop_timer
-            puts "Player 2 wins! Hit RETURN key to continue"
+            puts "#{@player2.name} wins! Hit RETURN key to continue"
             @player1.write_stats(false)
             gets.chomp
             return game_over
