@@ -17,7 +17,7 @@ class LeaderBoard
         rows.each_with_index do |row, index|
             print "#{index + 1}|"
             print row[0].capitalize.ljust(10)
-            print '|  ' + row[1] + '  |  ' + row[2] + '  |  '
+            print '|  ' + row[1].ljust(3) + '|  ' + row[2].ljust(3) + '|  '
             print "#{(row[1].to_i.to_f/(row[1].to_i + row[2].to_i) * 100).round(1)}" unless row[2] == '0'
             print '100.0' if row[2] == '0'
             puts ' '
