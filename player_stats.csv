@@ -1,5 +1,3 @@
-name,wins,losses
-sean,4,0
-bryan,11,1
-gustavo,1,0
-mr bean,1,0
+player,wins,losses
+bryan,7,1
+sean,2,3
